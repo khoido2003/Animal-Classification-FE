@@ -93,7 +93,7 @@ export const MainContent = () => {
               <img
                 src="/try-it.png"
                 alt="arrow"
-                className="w-50 block absolute top-[-3rem] left-0 "
+                className="h-30 block absolute top-[-4rem] left-0 "
               />
             </p>
 
