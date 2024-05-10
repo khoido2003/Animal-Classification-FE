@@ -1,6 +1,7 @@
 import { CheckIcon } from "@radix-ui/react-icons";
 import { Button } from "./ui/button";
 import { ChangeEvent, useState } from "react";
+import { Progress } from "./ui/progress";
 
 export const MainContent = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -82,28 +83,33 @@ export const MainContent = () => {
             </p>
           </div>
 
-          <div className="mb-20 mt-20 border-2 border-black rounded-md h-[80px] flex justify-center items-start px-4 flex-col gap-3 ">
-            <p className="font-semibold relative">
+          <div className="mb-20 mt-20 border-2 border-black rounded-md h-[80px] flex justify-center items-start px-4 flex-col gap-3 relative">
+            <img
+              src="/try-it.png"
+              alt="arrow"
+              className="h-16 block absolute top-[-4rem] left-0 "
+            />
+            <p className="font-semibold ">
               Result:{" "}
-              <span className="text-red-500">
+              <span className="text-red-500 text-lg font-bold uppercase">
                 {/* RESULT DISPLAY HERE */}
 
                 {result && result!.predicted_class}
               </span>
-              <img
-                src="/try-it.png"
-                alt="arrow"
-                className="h-30 block absolute top-[-4rem] left-0 "
-              />
             </p>
 
-            <p className="font-semibold">
-              Score: <span>{result && result!.best_prob}</span>
+            <p className="font-semibold text-lg ">
+              Score: <span>{result && result!.best_prob * 100 + "%"}</span>
             </p>
+            <Progress
+              value={result && result!.best_prob * 100}
+              className="w-80 h-3
+               absolute right-8 bottom-2 "
+            />
           </div>
         </div>
 
-        <div className="w-full h-[460px] border-2 border-black p-2 rounded-md py-5 relative">
+        <div className="w-full h-[480px] border-2 border-black p-2 rounded-md  relative py-4">
           <img
             className="absolute block top-[-4rem] w-60 right-0"
             src="/your-image.png"
@@ -134,14 +140,14 @@ export const MainContent = () => {
               <span className="file-selected-name">{selectedFileName}</span>
             </label>
 
-            <div className="m-auto gap-3 flex flex-col w-[320px] h-[320px]">
-              <div className=" border-dashed border-2 border-black w-[320px] h-[320px]">
+            <div className="m-auto gap-3 flex flex-col w-[300px] h-[300px]">
+              <div className=" border-dashed border-2 border-black w-[300px] h-[300px]">
                 {/* PICTURE SHOW UP HERE */}
                 {selectedImage && (
                   <img
                     src={selectedImage}
                     alt="Selected"
-                    className="w-full h-full object-cover"
+                    className="w-full aspect-square object-cover"
                   />
                 )}
               </div>
